@@ -1,11 +1,11 @@
-function getRandom(min, max, decimal_point = false) {
-let result = Math.random() * (max - min) + min;
+function getRandom(min, max, decimalPoint = false) {
+  const result = Math.random() * (max - min) + min;
 
-if (decimal_point) {
-  return result.toFixed(decimal_point);
-}
+  if (decimalPoint) {
+    return result.toFixed(decimalPoint);
+  }
 
-return result.toFixed(0);
+  return result.toFixed(0);
 }
 
 getRandom(1, 5);
