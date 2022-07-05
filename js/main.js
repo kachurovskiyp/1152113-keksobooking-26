@@ -13,7 +13,7 @@ function getRandomPositiveFloat (a, b, digits = 1) {
 }
 
 function getMoks (count) {
-  let moks = [];
+  const moks = [];
 
   const features = [
     'wifi',
@@ -44,9 +44,9 @@ function getMoks (count) {
     '12:00',
     '13:00',
     '14:00'
-  ]
+  ];
 
-  descriptions = [
+  const descriptions = [
     'Residhome Toulouse Ponts Jumeaux is set in the Minimes - Barriere de Paris district of Toulouse, 3.6 km from Zénith de Toulouse and 3.7 km from Toulouse Expo.',
     'The accommodation comes with a flat-screen TV and a private bathroom with shower and a hairdryer, while the kitchen features a microwave, a fridge and a stovetop.',
     'The apartment is equipped with 1 bedroom, 1 bathroom, bed linen, towels, a flat-screen TV with satellite channels, a dining area, a fully equipped kitchen, and a terrace with garden views',
@@ -54,15 +54,15 @@ function getMoks (count) {
     'Accommodation is fitted with air conditioning, a fully equipped kitchen with a dining area, a flat-screen TV and a private bathroom with shower, a hairdryer and free toiletries. '
   ];
 
-  photos = [
+  const photos = [
     'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
     'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
     'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
   ];
 
-  for(step = 0; step < count; step++) {
+  for(let step = 0; step < count; step++) {
 
-    let ad = {
+    const ad = {
       author: {
         avatar: 'img/avatars/user0' + getRandomPositiveInteger(1, 10) + '.png'
       },
