@@ -2,12 +2,12 @@ const LAT = {min: 40, max: 60};
 const LNG = {min: 10, max: 30};
 
 const FEATURES = [
-  `wifi`,
-  `dishwasher`,
-  `arking`,
-  `washer`,
-  `elevator`,
-  `conditioner`
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner'
 ];
 
 const TITLES = [
@@ -65,13 +65,13 @@ function getRamdonArrayEL(array) {
 }
 
 function shuffleArray(array) {
-	let j, temp;
+  let j, temp;
 
-	for(let i = array.length - 1; i > 0; i--){
-		j = Math.floor(Math.random()*(i + 1));
-		temp = array[j];
-		array[j] = array[i];
-		array[i] = temp;
+  for(let i = array.length - 1; i > 0; i--){
+    j = Math.floor(Math.random()*(i + 1));
+    temp = array[j];
+    array[j] = array[i];
+    array[i] = temp;
 	}
 
 	return array;
