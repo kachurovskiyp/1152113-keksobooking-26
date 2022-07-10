@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, getRandomPositiveFloat, getRamdonArrayEL, shuffleArray} from "./until.js";
+import {getRandomPositiveInteger, getRandomPositiveFloat, getRamdonArrayEL, shuffleArray} from './until.js';
 
 const LAT = {min: 40, max: 60};
 const LNG = {min: 10, max: 30};
