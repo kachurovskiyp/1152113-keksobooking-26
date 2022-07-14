@@ -2,7 +2,6 @@ const cardTemplate = document.querySelector('#card');
 const map = document.querySelector('#map-canvas');
 
 function renderCards(data) {
-  console.log(data);
 
   data.forEach((card) => {
     const cardElement = cardTemplate.cloneNode(true);
@@ -46,7 +45,7 @@ function renderCards(data) {
 
     features.forEach((featuresItem) => {
       const isNecessary = card.offer.features.some(
-        (cardFeature) => featuresItem.classList.contains('popup__feature--' + cardFeature)
+        (cardFeature) => featuresItem.classList.contains(`popup__feature--${cardFeature}`)
         );
 
       if(!isNecessary) {
