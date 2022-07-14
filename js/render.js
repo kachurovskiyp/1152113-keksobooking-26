@@ -46,7 +46,7 @@ function renderCards(data) {
     features.forEach((featuresItem) => {
       const isNecessary = card.offer.features.some(
         (cardFeature) => featuresItem.classList.contains(`popup__feature--${cardFeature}`)
-        );
+      );
 
       if(!isNecessary) {
         featuresItem.remove();
