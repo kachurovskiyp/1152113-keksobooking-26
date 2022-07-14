@@ -1,3 +1,6 @@
 import {getData} from './data.js';
+import {renderCards} from './render.js';
 
-getData(10);
+let data = getData(1);
+renderCards(data);
+
