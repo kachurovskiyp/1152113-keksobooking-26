@@ -67,8 +67,6 @@ const renderCards = (data) => {
 
     map.appendChild(cardElement.content);
   });
-
-
-}
+};
 
 export {renderCards};
