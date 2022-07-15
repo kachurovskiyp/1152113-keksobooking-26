@@ -1,7 +1,7 @@
 const cardTemplate = document.querySelector('#card');
 const map = document.querySelector('#map-canvas');
 
-function renderCards(data) {
+const renderCards = (data) => {
 
   data.forEach((card) => {
     const cardElement = cardTemplate.cloneNode(true);
