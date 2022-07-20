@@ -91,8 +91,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" data-pristine-required-message="My custom message"
-            minlength="30" maxlength="100" required placeholder="Милая, уютная квартирка в центре Токио" >
+          <input id="title" name="title" type="text" minlength="30" maxlength="100" required placeholder="Милая, уютная квартирка в центре Токио">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
@@ -177,6 +176,7 @@
           <button class="ad-form__submit" type="submit">Опубликовать</button>
           или <button class="ad-form__reset" type="reset">очистить</button>
         </fieldset>
+        <div class="my-error"></div>
       </form>
     </section>
   </main>
