@@ -39,20 +39,20 @@ const enableForm = () => {
 // Form validation
 
 const defaultConfig = {
-   classTo: 'ad-form',
-   errorClass: 'has-danger',
-   successClass: 'has-success',
-   errorTextParent: 'my-error',
-   errorTextTag: 'p',
-   errorTextClass: 'text-help'
+  classTo: 'ad-form',
+  errorClass: 'has-danger',
+  successClass: 'has-success',
+  errorTextParent: 'my-error',
+  errorTextTag: 'p',
+  errorTextClass: 'text-help'
 };
 
 const removeErrors = () => {
   const errors = form.querySelectorAll('.validation-error');
   if(errors) {
-    errors.forEach((error) => {error.remove()});
+    errors.forEach((error) => {error.remove();});
   }
-}
+};
 
 const pristine = new Pristine(form, defaultConfig);
 const titleInput = form.querySelector('#title');
@@ -97,14 +97,14 @@ const capacitySelect = form.querySelector('#capacity');
 
 const onRoomChange = (value) => {
   capacitySelect.querySelectorAll('option').forEach((option) => {
-      option.removeAttribute('disabled');
+    option.removeAttribute('disabled');
   });
 
   switch(value) {
     case '1': {
       capacitySelect.querySelector('option[value="1"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value != 1){
+        if(option.value !== 1){
           option.setAttribute('disabled', 'disabled');
         }
       });
@@ -114,7 +114,7 @@ const onRoomChange = (value) => {
     case '2': {
       capacitySelect.querySelector('option[value="2"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value > value || option.value == 0){
+        if(option.value > value || option.value === 0){
           option.setAttribute('disabled', 'disabled');
         }
       });
@@ -124,7 +124,7 @@ const onRoomChange = (value) => {
     case '3': {
       capacitySelect.querySelector('option[value="3"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value > value || option.value == 0) {
+        if(option.value > value || option.value === 0) {
           option.setAttribute('disabled', 'disabled');
         }
       });
@@ -134,14 +134,14 @@ const onRoomChange = (value) => {
     case '100': {
       capacitySelect.querySelector('option[value="0"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value != 0){
+        if(option.value !== 0){
           option.setAttribute('disabled', 'disabled');
         }
       });
       break;
     }
   }
-}
+};
 
 roomSelect.addEventListener('change', () => {
   onRoomChange(roomSelect.value);
