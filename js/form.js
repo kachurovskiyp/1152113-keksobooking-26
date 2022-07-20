@@ -148,5 +148,4 @@ roomSelect.addEventListener('change', () => {
 });
 
 onRoomChange(roomSelect.value);
-
 export {disableForm, enableForm};
