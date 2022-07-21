@@ -75,7 +75,8 @@
         <button type="button" class="error__button">Попробовать снова</button>
       </div> -->
       <h2 class="notice__title">Ваше объявление</h2>
-      <form action="https://26.javascript.pages.academy/keksobooking" class="ad-form" method="post" enctype="multipart/form-data" autocomplete="off">
+      <form action="https://26.javascript.pages.academy/keksobooking" class="ad-form"
+      method="post" enctype="multipart/form-data" novalidate autocomplete="off">
         <fieldset class="ad-form-header">
           <legend class="ad-form-header__title">Ваша фотография (для карты)</legend>
           <div class="ad-form-header__upload">
@@ -91,7 +92,15 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" minlength="30" maxlength="100" placeholder="Милая, уютная квартирка в центре Токио" required>
+
+          <input id="title" name="title" type="text" class="ad-form__title" placeholder="Милая, уютная квартирка в центре Токио"
+          minlength="30"
+          maxlength="100"
+          data-pristine-required-message="Введите заголовок"
+          data-pristine-minlength-message="Заголовок должен быть не короче 30 символов"
+          data-pristine-maxnlength-message="Заголовок должен быть не длинне 100 символов"
+          required>
+
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
@@ -109,7 +118,11 @@
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <input id="price" name="price" type="number" placeholder="5000" required>
+          <input id="price" name="price" type="number" placeholder="5000"
+          max="100000"
+          data-pristine-required-message="Укажите цену"
+          data-pristine-max-message="Цена не может быть больше 100000"
+          required>
           <div class="ad-form__slider"></div>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
@@ -176,7 +189,6 @@
           <button class="ad-form__submit" type="submit">Опубликовать</button>
           или <button class="ad-form__reset" type="reset">очистить</button>
         </fieldset>
-        <div class="my-error"></div>
       </form>
     </section>
   </main>
