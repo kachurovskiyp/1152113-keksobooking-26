@@ -38,7 +38,6 @@ const enableForm = () => {
 };
 
 // Form validation
-
 const adFormValidator = (pristine) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
