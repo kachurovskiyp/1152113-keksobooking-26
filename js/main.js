@@ -1,7 +1,7 @@
 
 import {getData} from './data.js';
 import {renderCards} from './render.js';
-import {disableForm, enableForm, onRoomChange} from './form.js';
+import {disableForm, enableForm, onRoomChange, adFormValidator, getPristineConfig} from './form.js';
 
 const data = getData(1);
 renderCards(data);
@@ -15,3 +15,7 @@ roomSelect.addEventListener('change', () => {
 });
 
 onRoomChange(roomSelect.value);
+
+const pristine = new Pristine(form, getPristineConfig());
+
+adFormValidator(pristine);

@@ -39,22 +39,25 @@ const enableForm = () => {
 
 // Form validation
 
-const defaultConfig = {
-  classTo: 'ad-form__element',
-  errorTextParent: 'ad-form__element',
-  errorTextTag: 'div',
-  errorTextClass: 'text-help'
-};
+const getPristineConfig = () => {
+  return pristineConfig = {
+    classTo: 'ad-form__element',
+    errorTextParent: 'ad-form__element',
+    errorTextTag: 'div',
+    errorTextClass: 'text-help'
+  };
+}
 
-const pristine = new Pristine(form, defaultConfig);
+const adFormValidator = (pristine) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if(isValid) {
+      form.submit();
+    }
+ });
+}
 
-form.addEventListener('submit', function (e) {
-   e.preventDefault();
-   const isValid = pristine.validate();
-   if(isValid) {
-    form.submit();
-   }
-});
 
 const onRoomChange = (value) => {
   capacitySelect.querySelectorAll('option').forEach((option) => {
@@ -75,7 +78,7 @@ const onRoomChange = (value) => {
     case '2': {
       capacitySelect.querySelector('option[value="2"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value > value || option.value === "0"){
+        if(option.value > value || option.value === '0'){
           option.setAttribute('disabled', 'disabled');
         }
       });
@@ -85,7 +88,7 @@ const onRoomChange = (value) => {
     case '3': {
       capacitySelect.querySelector('option[value="3"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value > value || option.value === "0") {
+        if(option.value > value || option.value === '0') {
           option.setAttribute('disabled', 'disabled');
         }
       });
@@ -95,7 +98,7 @@ const onRoomChange = (value) => {
     case '100': {
       capacitySelect.querySelector('option[value="0"]').setAttribute('selected', 'selected');
       capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value !== "0"){
+        if(option.value !== '0'){
           option.setAttribute('disabled', 'disabled');
         }
       });
@@ -104,4 +107,4 @@ const onRoomChange = (value) => {
   }
 };
 
-export {disableForm, enableForm, onRoomChange};
+export {disableForm, enableForm, onRoomChange, getPristineConfig, adFormValidator};
