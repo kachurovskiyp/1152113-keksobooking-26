@@ -3,7 +3,7 @@ const mapFilters = document.querySelector('.map__filters');
 const formFieldsets = form.querySelectorAll('fieldset');
 const mapFiltersSelects = mapFilters.querySelectorAll('select');
 const mapFiltersFieldsets = mapFilters.querySelectorAll('fieldset');
-
+const capacitySelect = form.querySelector('#capacity');
 
 const disableForm = () => {
   form.classList.add('ad-form--disabled');
@@ -37,4 +37,65 @@ const enableForm = () => {
   });
 };
 
-export {disableForm, enableForm};
+// Form validation
+
+const adFormValidator = (pristine) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if(isValid) {
+      form.submit();
+    }
+  });
+};
+
+
+const onRoomChange = (value) => {
+  capacitySelect.querySelectorAll('option').forEach((option) => {
+    option.removeAttribute('disabled');
+  });
+
+  switch(value) {
+    case '1': {
+      capacitySelect.querySelector('option[value="1"]').setAttribute('selected', 'selected');
+      capacitySelect.querySelectorAll('option').forEach((option) => {
+        if(option.value !== value){
+          option.setAttribute('disabled', 'disabled');
+        }
+      });
+      break;
+    }
+
+    case '2': {
+      capacitySelect.querySelector('option[value="2"]').setAttribute('selected', 'selected');
+      capacitySelect.querySelectorAll('option').forEach((option) => {
+        if(option.value > value || option.value === '0'){
+          option.setAttribute('disabled', 'disabled');
+        }
+      });
+      break;
+    }
+
+    case '3': {
+      capacitySelect.querySelector('option[value="3"]').setAttribute('selected', 'selected');
+      capacitySelect.querySelectorAll('option').forEach((option) => {
+        if(option.value > value || option.value === '0') {
+          option.setAttribute('disabled', 'disabled');
+        }
+      });
+      break;
+    }
+
+    case '100': {
+      capacitySelect.querySelector('option[value="0"]').setAttribute('selected', 'selected');
+      capacitySelect.querySelectorAll('option').forEach((option) => {
+        if(option.value !== '0'){
+          option.setAttribute('disabled', 'disabled');
+        }
+      });
+      break;
+    }
+  }
+};
+
+export {disableForm, enableForm, onRoomChange, adFormValidator};
