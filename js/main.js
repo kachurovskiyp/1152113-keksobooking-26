@@ -16,6 +16,7 @@ roomSelect.addEventListener('change', () => {
 
 onRoomChange(roomSelect.value);
 
+const form = document.querySelector('.ad-form');
 const pristine = new Pristine(form, getPristineConfig());
 
 adFormValidator(pristine);

@@ -40,13 +40,13 @@ const enableForm = () => {
 // Form validation
 
 const getPristineConfig = () => {
-  return pristineConfig = {
+  return {
     classTo: 'ad-form__element',
     errorTextParent: 'ad-form__element',
     errorTextTag: 'div',
     errorTextClass: 'text-help'
   };
-}
+};
 
 const adFormValidator = (pristine) => {
   form.addEventListener('submit', (evt) => {
@@ -55,7 +55,7 @@ const adFormValidator = (pristine) => {
     if(isValid) {
       form.submit();
     }
- });
+  });
 }
 
 
