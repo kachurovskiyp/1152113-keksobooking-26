@@ -17,7 +17,7 @@ roomSelect.addEventListener('change', () => {
   onRoomChange(roomSelect.value);
 });
 
-typeInput.addEventListener('change', (evt) => {
+typeInput.addEventListener('change', () => {
   onTypeChange();
 });
 
