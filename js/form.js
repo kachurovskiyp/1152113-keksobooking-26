@@ -39,15 +39,6 @@ const enableForm = () => {
 
 // Form validation
 
-const getPristineConfig = () => {
-  return {
-    classTo: 'ad-form__element',
-    errorTextParent: 'ad-form__element',
-    errorTextTag: 'div',
-    errorTextClass: 'text-help'
-  };
-};
-
 const adFormValidator = (pristine) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -56,7 +47,7 @@ const adFormValidator = (pristine) => {
       form.submit();
     }
   });
-}
+};
 
 
 const onRoomChange = (value) => {
@@ -107,4 +98,4 @@ const onRoomChange = (value) => {
   }
 };
 
-export {disableForm, enableForm, onRoomChange, getPristineConfig, adFormValidator};
+export {disableForm, enableForm, onRoomChange, adFormValidator};
