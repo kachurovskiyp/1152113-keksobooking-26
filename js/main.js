@@ -1,22 +1,33 @@
 
 import {getData} from './data.js';
 import {renderCards} from './render.js';
-import {disableForm, enableForm, onRoomChange, adFormValidator} from './form.js';
-
+import {disableForm, enableForm, onRoomChange, onTypeChange, onInTimeChange, onOutTimeChange, adFormValidator} from './form.js';
+const form = document.querySelector('.ad-form');
 const data = getData(1);
 renderCards(data);
 disableForm();
 enableForm();
 
-const roomSelect = document.querySelector('#room_number');
+const roomSelect = form.querySelector('#room_number');
+const typeInput = form.querySelector('#type');
+const timeInSelect = form.querySelector('#timein');
+const timeOutSelect = form.querySelector('#timeout');
 
 roomSelect.addEventListener('change', () => {
   onRoomChange(roomSelect.value);
 });
 
-onRoomChange(roomSelect.value);
+typeInput.addEventListener('change', () => {
+  onTypeChange();
+});
 
-const form = document.querySelector('.ad-form');
+timeInSelect.addEventListener('change', () => {
+  onInTimeChange();
+});
+
+timeOutSelect.addEventListener('change', () => {
+  onOutTimeChange();
+});
 
 const pristineConfig = {
   classTo: 'ad-form__element',
@@ -28,3 +39,5 @@ const pristineConfig = {
 const pristine = new Pristine(form, pristineConfig);
 
 adFormValidator(pristine);
+onRoomChange(roomSelect.value);
+onTypeChange();

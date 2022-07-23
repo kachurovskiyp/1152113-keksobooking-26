@@ -38,7 +38,6 @@ const enableForm = () => {
 };
 
 // Form validation
-
 const adFormValidator = (pristine) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -49,53 +48,94 @@ const adFormValidator = (pristine) => {
   });
 };
 
+const pristineConfig = {
+  classTo: 'ad-form__element',
+  errorTextParent: 'ad-form__element',
+  errorTextTag: 'div',
+  errorTextClass: 'text-help'
+};
 
 const onRoomChange = (value) => {
-  capacitySelect.querySelectorAll('option').forEach((option) => {
-    option.removeAttribute('disabled');
-  });
-
   switch(value) {
     case '1': {
+      const pristine = new Pristine(form, pristineConfig);
       capacitySelect.querySelector('option[value="1"]').setAttribute('selected', 'selected');
-      capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value !== value){
-          option.setAttribute('disabled', 'disabled');
-        }
-      });
+      pristine.addValidator(capacitySelect, () => capacitySelect.value === value,'1 комната только для 1 гостя');
       break;
     }
 
     case '2': {
+      const pristine = new Pristine(form, pristineConfig);
       capacitySelect.querySelector('option[value="2"]').setAttribute('selected', 'selected');
-      capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value > value || option.value === '0'){
-          option.setAttribute('disabled', 'disabled');
-        }
-      });
+      pristine.addValidator(capacitySelect, () => capacitySelect.value < value && capacitySelect.value !== '0', '2 комнаты только для 1 или 2 гостей');
       break;
     }
 
     case '3': {
       capacitySelect.querySelector('option[value="3"]').setAttribute('selected', 'selected');
-      capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value > value || option.value === '0') {
-          option.setAttribute('disabled', 'disabled');
-        }
-      });
+      const pristine = new Pristine(form, pristineConfig);
+      pristine.addValidator(capacitySelect, () => capacitySelect.value <= value && capacitySelect.value !== '0', '3 комнаты только для 1, 2 или 3 гостей');
       break;
     }
 
     case '100': {
       capacitySelect.querySelector('option[value="0"]').setAttribute('selected', 'selected');
-      capacitySelect.querySelectorAll('option').forEach((option) => {
-        if(option.value !== '0'){
-          option.setAttribute('disabled', 'disabled');
-        }
-      });
+      const pristine = new Pristine(form, pristineConfig);
+      pristine.addValidator(capacitySelect, () => capacitySelect.value === '0', '100 комнат не для гостей');
       break;
     }
   }
 };
 
-export {disableForm, enableForm, onRoomChange, adFormValidator};
+const onTypeChange = () => {
+  const typeSelect = form.querySelector('#type');
+  const priceInput = form.querySelector('#price');
+
+  switch(typeSelect.value) {
+    case 'bungalow': {
+      priceInput.placeholder = '0';
+      break;
+    }
+
+    case 'flat': {
+      priceInput.placeholder = '1000';
+      const pristine = new Pristine(form, pristineConfig);
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > 1000, 'Цена не может быть ниже 1000');
+      break;
+    }
+
+    case 'hotel': {
+      priceInput.placeholder = '3000';
+      const pristine = new Pristine(form, pristineConfig);
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > 3000, 'Цена не может быть ниже 3000');
+      break;
+    }
+
+    case 'house': {
+      priceInput.placeholder = '5000';
+      const pristine = new Pristine(form, pristineConfig);
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > 5000, 'Цена не может быть ниже 5000');
+      break;
+    }
+
+    case 'palace': {
+      priceInput.placeholder = '10000';
+      const pristine = new Pristine(form, pristineConfig);
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > 10000, 'Цена не может быть ниже 10000');
+      break;
+    }
+  }
+};
+
+const timeInSelect = form.querySelector('#timein');
+const timeOutSelect = form.querySelector('#timeout');
+
+const onInTimeChange = () => {
+  timeOutSelect.value = timeInSelect.value;
+};
+
+const onOutTimeChange = () => {
+  timeInSelect.value = timeOutSelect.value;
+};
+
+export {disableForm, enableForm, onRoomChange, onTypeChange, onInTimeChange, onOutTimeChange, adFormValidator};
