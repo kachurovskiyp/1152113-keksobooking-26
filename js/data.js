@@ -1,7 +1,7 @@
 import {getRandomPositiveInteger, getRandomPositiveFloat, getRamdonArrayEL, shuffleArray} from './until.js';
 
-const LAT = {min: 40, max: 60};
-const LNG = {min: 10, max: 30};
+const LAT = {min: 35, max: 36};
+const LNG = {min: 139, max: 140};
 
 const FEATURES = [
   'wifi',

@@ -1,9 +1,6 @@
 const cardTemplate = document.querySelector('#card');
-const map = document.querySelector('#map-canvas');
 
-const renderCards = (data) => {
-
-  data.forEach((card) => {
+const renderCard = (card) => {
     const cardElement = cardTemplate.cloneNode(true);
     const features = cardElement.content.querySelectorAll('.popup__feature');
 
@@ -65,8 +62,7 @@ const renderCards = (data) => {
       photosContainer.appendChild(image);
     });
 
-    map.appendChild(cardElement.content);
-  });
+    return cardElement.content;
 };
 
-export {renderCards};
+export {renderCard};
