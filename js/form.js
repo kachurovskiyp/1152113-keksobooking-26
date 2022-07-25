@@ -87,18 +87,53 @@ const onRoomChange = (value) => {
   }
 };
 
-const onTypeChange = () => {
-  const typeSelect = form.querySelector('#type');
-  const priceInput = form.querySelector('#price');
+// Price slider
 
+const slider = form.querySelector('.ad-form__slider');
+const typeSelect = form.querySelector('#type');
+const priceInput = form.querySelector('#price');
+
+noUiSlider.create(slider, {
+  range: {
+    min: 0,
+    max: 100000,
+  },
+  step: 10,
+  start: 0,
+  connect: 'lower'
+});
+
+slider.noUiSlider.on('update', () => {
+  priceInput.value = slider.noUiSlider.get();
+});
+
+// End of price slider
+
+const onTypeChange = () => {
   switch(typeSelect.value) {
     case 'bungalow': {
       priceInput.placeholder = '0';
+      slider.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 100000,
+        },
+        step: 10,
+      });
+      priceInput.value = 0;
       break;
     }
 
     case 'flat': {
       priceInput.placeholder = '1000';
+      slider.noUiSlider.updateOptions({
+        range: {
+          min: 1000,
+          max: 100000,
+        },
+        step: 10,
+      });
+      priceInput.value = 1000;
       const pristine = new Pristine(form, pristineConfig);
       pristine.addValidator(priceInput, () => priceInput.value * 1 > 1000, 'Цена не может быть ниже 1000');
       break;
@@ -106,6 +141,14 @@ const onTypeChange = () => {
 
     case 'hotel': {
       priceInput.placeholder = '3000';
+      slider.noUiSlider.updateOptions({
+        range: {
+          min: 3000,
+          max: 100000,
+        },
+        step: 10,
+      });
+      priceInput.value = 3000;
       const pristine = new Pristine(form, pristineConfig);
       pristine.addValidator(priceInput, () => priceInput.value * 1 > 3000, 'Цена не может быть ниже 3000');
       break;
@@ -113,6 +156,14 @@ const onTypeChange = () => {
 
     case 'house': {
       priceInput.placeholder = '5000';
+      slider.noUiSlider.updateOptions({
+        range: {
+          min: 5000,
+          max: 100000,
+        },
+        step: 10,
+      });
+      priceInput.value = 5000;
       const pristine = new Pristine(form, pristineConfig);
       pristine.addValidator(priceInput, () => priceInput.value * 1 > 5000, 'Цена не может быть ниже 5000');
       break;
@@ -120,6 +171,14 @@ const onTypeChange = () => {
 
     case 'palace': {
       priceInput.placeholder = '10000';
+      slider.noUiSlider.updateOptions({
+        range: {
+          min: 10000,
+          max: 100000,
+        },
+        step: 10,
+      });
+      priceInput.value = 10000;
       const pristine = new Pristine(form, pristineConfig);
       pristine.addValidator(priceInput, () => priceInput.value * 1 > 10000, 'Цена не может быть ниже 10000');
       break;
