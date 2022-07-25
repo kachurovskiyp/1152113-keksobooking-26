@@ -7,7 +7,7 @@ const loadData = (onSuccess) => {
   fetch(LOAD_DATA_SERVER)
     .then((response) => {
       if(response.ok) {
-        return response.json()
+        return response.json();
       }
       throw new Error(err);
     })
@@ -25,16 +25,16 @@ const sendData = (formData) => {
       body: formData,
     },
   )
-  .then((response) => {
-    if (response.ok) {
-      showStatus('success');
-      return;
-    }
-    throw new Error(`${response.status} ${response.statusText}`);
-  })
-  .catch(() => {
-    showStatus('error');
-  })
-}
+    .then((response) => {
+      if (response.ok) {
+        showStatus('success');
+        return;
+      }
+      throw new Error(`${response.status} ${response.statusText}`);
+    })
+    .catch(() => {
+      showStatus('error');
+    });
+};
 
 export {loadData, sendData};

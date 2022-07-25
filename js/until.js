@@ -1,34 +1,3 @@
-function getRandomPositiveInteger (a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-}
-
-function getRandomPositiveFloat (a, b, digits = 1) {
-  const lower = Math.min(Math.abs(a), Math.abs(b));
-  const upper = Math.max(Math.abs(a), Math.abs(b));
-  const result = Math.random() * (upper - lower) + lower;
-  return +result.toFixed(digits);
-}
-
-function getRamdonArrayEL(array) {
-  return array[getRandomPositiveInteger(1, array.length - 1)];
-}
-
-function shuffleArray(array) {
-  let j, temp;
-
-  for(let i = array.length - 1; i > 0; i--){
-    j = Math.floor(Math.random()*(i + 1));
-    temp = array[j];
-    array[j] = array[i];
-    array[i] = temp;
-  }
-
-  return array;
-}
-
 const ALERT_SHOW_TIME = 3000;
 
 const showAlert = (message) => {
@@ -55,13 +24,8 @@ const showAlert = (message) => {
 const showStatus = (status) => {
   const popup = document.querySelector(`#${status}`).cloneNode(true);
   document.body.append(popup.content);
-  const message = document.querySelector(`.${status}`);
 
-  const closeMessage = () => {
-    message.remove();
-    window.removeEventListener('click', onClick);
-    window.removeEventListener('keydown', onEscPress);
-  }
+  const message = document.querySelector(`.${status}`);
 
   const onClick = () => {
     closeMessage();
@@ -73,15 +37,14 @@ const showStatus = (status) => {
     }
   };
 
+  const closeMessage = () => {
+    message.remove();
+    window.removeEventListener('click', onClick);
+    window.removeEventListener('keydown', onEscPress);
+  }
+
   window.addEventListener('click', onClick);
   window.addEventListener('keydown', onEscPress);
 };
 
-export {
-  getRandomPositiveInteger,
-  getRandomPositiveFloat,
-  getRamdonArrayEL,
-  shuffleArray,
-  showAlert,
-  showStatus
-};
+export {showAlert, showStatus};

@@ -1,4 +1,4 @@
-import { sendData } from "./api.js";
+import { sendData } from './api.js';
 
 const form = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
@@ -45,15 +45,11 @@ const adFormValidator = (pristine) => {
     evt.preventDefault();
     const isValid = pristine.validate();
 
-
-
     if(isValid) {
       sendData(new FormData(evt.target));
      }
   });
 };
-
-
 
 const pristineConfig = {
   classTo: 'ad-form__element',

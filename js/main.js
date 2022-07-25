@@ -1,5 +1,4 @@
 import { disableForm, onRoomChange, onTypeChange, onInTimeChange, onOutTimeChange, adFormValidator } from './form.js';
-import { getData } from './data.js';
 import { initMap } from './map.js';
 
 const form = document.querySelector('.ad-form');
@@ -40,6 +39,4 @@ adFormValidator(pristine);
 onRoomChange(roomSelect.value);
 onTypeChange();
 
-
-const data = getData(5);
 initMap();

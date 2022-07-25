@@ -6,7 +6,7 @@ const tokioLatLng = {lat: 35.701147508168674, lng: 139.7822078445013};
 const addressInput = document.querySelector('#address');
 
 addressInput.setAttribute('readonly', 'readonly');
-addressInput.value = `lat: ${tokioLatLng.lat}, lng: ${tokioLatLng.lng}`
+addressInput.value = `lat: ${tokioLatLng.lat}, lng: ${tokioLatLng.lng}`;
 
 const initMap = () => {
   const map = L.map('map-canvas')
@@ -57,17 +57,17 @@ const initMap = () => {
   const renderPins = (data) => {
     data.forEach((dataItem) => {
       const marker = L.marker(
-      {
-        lat: dataItem.location.lat,
-        lng: dataItem.location.lng,
-      },
-      {
-        icon: pinIcon
-      },
+        {
+          lat: dataItem.location.lat,
+          lng: dataItem.location.lng,
+        },
+        {
+          icon: pinIcon
+        },
       );
       marker.addTo(map).bindPopup(renderCard(dataItem));
-      });
-    }
+    });
+  };
 
   loadData(renderPins);
 };
