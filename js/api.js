@@ -9,7 +9,7 @@ const loadData = (onSuccess) => {
       if(response.ok) {
         return response.json();
       }
-      throw new Error(error);
+      throw new Error(`${response.status} ${response.statusText}`);
     })
     .then(onSuccess)
     .catch((error) => {

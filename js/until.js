@@ -41,7 +41,7 @@ const showStatus = (status) => {
     message.remove();
     window.removeEventListener('click', onClick);
     window.removeEventListener('keydown', onEscPress);
-  };
+  }
 
   window.addEventListener('click', onClick);
   window.addEventListener('keydown', onEscPress);
