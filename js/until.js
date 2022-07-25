@@ -19,7 +19,7 @@ const showAlert = (message) => {
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
-}
+};
 
 const showStatus = (status) => {
   const popup = document.querySelector(`#${status}`).cloneNode(true);
@@ -37,11 +37,11 @@ const showStatus = (status) => {
     }
   };
 
-  const closeMessage = () => {
+  function closeMessage () {
     message.remove();
     window.removeEventListener('click', onClick);
     window.removeEventListener('keydown', onEscPress);
-  }
+  };
 
   window.addEventListener('click', onClick);
   window.addEventListener('keydown', onEscPress);

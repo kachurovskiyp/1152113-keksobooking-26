@@ -9,11 +9,11 @@ const loadData = (onSuccess) => {
       if(response.ok) {
         return response.json();
       }
-      throw new Error(err);
+      throw new Error(error);
     })
     .then(onSuccess)
-    .catch((err) => {
-      showAlert(err.message);
+    .catch((error) => {
+      showAlert(error.message);
     });
 };
 

@@ -47,7 +47,7 @@ const adFormValidator = (pristine) => {
 
     if(isValid) {
       sendData(new FormData(evt.target));
-     }
+    }
   });
 };
 
