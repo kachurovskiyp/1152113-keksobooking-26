@@ -37,7 +37,7 @@ const resetMapFilters = () => {
   features.forEach((feature) => {
     feature.checked = false;
   });
-}
+};
 
 const setMapFilter = (cb) => {
   mapFilters.addEventListener('change', () => {
@@ -47,14 +47,14 @@ const setMapFilter = (cb) => {
 
 const filters = {
   type : (dataItem) => {
-      if(typeSelect.value != 'any') {
-        return dataItem.offer.type === typeSelect.value;
-      }
-      return true;
+    if(typeSelect.value !== 'any') {
+      return dataItem.offer.type === typeSelect.value;
+    }
+    return true;
     },
 
   price : (dataItem) => {
-    if(priceSelect.value != 'any') {
+    if(priceSelect.value !== 'any') {
       switch(priceSelect.value) {
         case 'middle': {
           return dataItem.offer.price > 10000 && dataItem.offer.price < 50000;
@@ -71,7 +71,7 @@ const filters = {
   },
 
   rooms : (dataItem) => {
-    if(roomSelect.value != 'any') {
+    if(roomSelect.value !== 'any') {
       return dataItem.offer.rooms === roomSelect.value * 1;
     }
     return true;
@@ -79,7 +79,7 @@ const filters = {
 
 
   guest : (dataItem) => {
-    if(guestSelect.value != 'any') {
+    if(guestSelect.value !== 'any') {
       return dataItem.offer.guests === guestSelect.value * 1;
     }
     return true;
@@ -91,12 +91,9 @@ const filters = {
       const checkedFilters = document.querySelector('.map__filters')
         .querySelectorAll('input[type="checkbox"]:checked');
 
-        if(checkedFilters) {
-          checkedFilters.forEach((filter) => {
-            return dataItem.offer.features.includes(filter.id.substring(7));
-        });
+      if(checkedFilters) {
+        checkedFilters.forEach((filter) => dataItem.offer.features.includes(filter.id.substring(7)));
       }
-
     }
     return true;
   }

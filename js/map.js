@@ -88,10 +88,9 @@ const mapInit = () => {
   loadData((data) => {
     renderPins(data);
     setMapFilter(debounce(
-        () => renderPins(data),
-        RENDER_DELAY
-      )
-    );
+      () => renderPins(data),
+      RENDER_DELAY
+    ));
   });
 };
 
