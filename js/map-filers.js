@@ -51,7 +51,7 @@ const filters = {
       return dataItem.offer.type === typeSelect.value;
     }
     return true;
-    },
+  },
 
   price : (dataItem) => {
     if(priceSelect.value !== 'any') {
