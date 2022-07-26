@@ -1,14 +1,21 @@
-import { disableForm, onRoomChange, onTypeChange, onInTimeChange, onOutTimeChange, adFormValidator } from './form.js';
-import { initMap } from './map.js';
+import {
+  disableForm,
+  onRoomChange,
+  onTypeChange,
+  onInTimeChange,
+  onOutTimeChange,
+  adFormValidator
+} from './form.js';
+
+import { mapInit } from './map.js';
 
 const form = document.querySelector('.ad-form');
-
-disableForm();
-
 const roomSelect = form.querySelector('#room_number');
 const typeInput = form.querySelector('#type');
 const timeInSelect = form.querySelector('#timein');
 const timeOutSelect = form.querySelector('#timeout');
+
+disableForm();
 
 roomSelect.addEventListener('change', () => {
   onRoomChange(roomSelect.value);
@@ -38,5 +45,4 @@ const pristine = new Pristine(form, pristineConfig);
 adFormValidator(pristine);
 onRoomChange(roomSelect.value);
 onTypeChange();
-
-initMap();
+mapInit();

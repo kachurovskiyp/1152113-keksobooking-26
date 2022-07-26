@@ -11,7 +11,9 @@ const loadData = (onSuccess) => {
       }
       throw new Error(`${response.status} ${response.statusText}`);
     })
-    .then(onSuccess)
+    .then((data) => {
+      onSuccess(data);
+    })
     .catch((error) => {
       showAlert(error.message);
     });
