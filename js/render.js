@@ -41,26 +41,29 @@ const renderCard = (card) => {
   }
 
   features.forEach((featuresItem) => {
-    const isNecessary = card.offer.features.some(
-      (cardFeature) => featuresItem.classList.contains(`popup__feature--${cardFeature}`)
-    );
-
-    if(!isNecessary) {
-      featuresItem.remove();
+    if(card.offer.features) {
+      const isNecessary = card.offer.features.some(
+        (cardFeature) => featuresItem.classList.contains(`popup__feature--${cardFeature}`)
+      );
+      if(!isNecessary) {
+        featuresItem.remove();
+      }
     }
   });
 
-  card.offer.photos.forEach((photo) => {
-    const image = document.createElement('img');
+  if(card.offer.photos) {
+    card.offer.photos.forEach((photo) => {
+      const image = document.createElement('img');
 
-    image.src = photo;
-    image.classList.add('popup__photo');
-    image.width = '45';
-    image.height = '40';
-    image.alt = 'Фотография жилья';
+      image.src = photo;
+      image.classList.add('popup__photo');
+      image.width = '45';
+      image.height = '40';
+      image.alt = 'Фотография жилья';
 
-    photosContainer.appendChild(image);
-  });
+      photosContainer.appendChild(image);
+    });
+  }
 
   return cardElement.content;
 };

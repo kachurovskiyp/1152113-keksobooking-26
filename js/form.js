@@ -1,3 +1,5 @@
+import { sendData } from './api.js';
+
 const form = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
 const formFieldsets = form.querySelectorAll('fieldset');
@@ -42,8 +44,9 @@ const adFormValidator = (pristine) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
+
     if(isValid) {
-      form.submit();
+      sendData(new FormData(evt.target));
     }
   });
 };
