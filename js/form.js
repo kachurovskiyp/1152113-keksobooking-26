@@ -30,9 +30,7 @@ avatarCooser.addEventListener('change', () => {
   const file = avatarCooser.files[0];
   const fileName = file.name.toLowerCase();
 
-  const matches = FILE_TYPES.some((it) => {
-    return fileName.endsWith(it);
-  });
+  const matches = FILE_TYPES.some((it) =>  fileName.endsWith(it));
 
   if (matches) {
     avatarPrewiev.querySelector('img').src = URL.createObjectURL(file);
@@ -48,9 +46,7 @@ fotoCooser.addEventListener('change', () => {
   const file = fotoCooser.files[0];
   const fileName = file.name.toLowerCase();
 
-  const matches = FILE_TYPES.some((it) => {
-    return fileName.endsWith(it);
-  });
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
   if (matches) {
     const foto = document.createElement('img');
