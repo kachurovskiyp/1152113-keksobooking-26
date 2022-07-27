@@ -92,8 +92,6 @@ slider.noUiSlider.on('update', () => {
   priceInput.value = slider.noUiSlider.get();
 });
 
-
-
 const resetForm = () => {
   form.reset();
   resetMapFilters();

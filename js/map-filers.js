@@ -94,7 +94,7 @@ const filters = {
 
       if(checkedFilters.length !== 0) {
         checkedFilters.forEach((filter) => {
-          isMatch = dataItem.offer.features.includes(filter.id.substring(7))
+          isMatch = dataItem.offer.features.includes(filter.id.substring(7));
         });
       }
     }
