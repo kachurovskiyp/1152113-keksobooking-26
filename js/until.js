@@ -47,4 +47,12 @@ const showStatus = (status) => {
   window.addEventListener('keydown', onEscPress);
 };
 
-export {showAlert, showStatus};
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {showAlert, showStatus, debounce};

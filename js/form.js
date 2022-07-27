@@ -1,26 +1,47 @@
 import { sendData } from './api.js';
+import { disableMapFilters, enableMapFilters, resetMapFilters } from './map-filers.js';
+import { resetMap, getDafaultCoords } from './map.js';
 
 const form = document.querySelector('.ad-form');
-const mapFilters = document.querySelector('.map__filters');
 const formFieldsets = form.querySelectorAll('fieldset');
-const mapFiltersSelects = mapFilters.querySelectorAll('select');
-const mapFiltersFieldsets = mapFilters.querySelectorAll('fieldset');
 const capacitySelect = form.querySelector('#capacity');
+const timeInSelect = form.querySelector('#timein');
+const timeOutSelect = form.querySelector('#timeout');
+const slider = form.querySelector('.ad-form__slider');
+const typeSelect = form.querySelector('#type');
+const priceInput = form.querySelector('#price');
+const resetButton = form.querySelector('.ad-form__reset');
+const addressInput = form.querySelector('#address');
+
+const pristineConfig = {
+  classTo: 'ad-form__element',
+  errorTextParent: 'ad-form__element',
+  errorTextTag: 'div',
+  errorTextClass: 'text-help'
+};
+
+// Price slider
+
+noUiSlider.create(slider, {
+  range: {
+    min: 0,
+    max: 100000,
+  },
+  step: 10,
+  start: 0,
+  connect: 'lower'
+});
+
+slider.noUiSlider.on('update', () => {
+  priceInput.value = slider.noUiSlider.get();
+});
 
 const disableForm = () => {
   form.classList.add('ad-form--disabled');
   formFieldsets.forEach((fieldset) => {
     fieldset.setAttribute('disabled', 'disabled');
   });
-
-  mapFilters.classList.add('map__filters--disabled');
-  mapFiltersSelects.forEach((select) => {
-    select.setAttribute('disabled', 'disabled');
-  });
-
-  mapFiltersFieldsets.forEach((fieldset) => {
-    fieldset.setAttribute('disabled', 'disabled');
-  });
+  disableMapFilters();
 };
 
 const enableForm = () => {
@@ -28,15 +49,14 @@ const enableForm = () => {
   formFieldsets.forEach((fieldset) => {
     fieldset.disabled = false;
   });
+  enableMapFilters();
+};
 
-  mapFilters.classList.remove('map__filters--disabled');
-  mapFiltersSelects.forEach((select) => {
-    select.disabled = false;
-  });
-
-  mapFiltersFieldsets.forEach((fieldset) => {
-    fieldset.disabled = false;
-  });
+const resetForm = () => {
+  form.reset();
+  resetMapFilters();
+  resetMap();
+  addressInput.value = getDafaultCoords();
 };
 
 // Form validation
@@ -49,13 +69,6 @@ const adFormValidator = (pristine) => {
       sendData(new FormData(evt.target));
     }
   });
-};
-
-const pristineConfig = {
-  classTo: 'ad-form__element',
-  errorTextParent: 'ad-form__element',
-  errorTextTag: 'div',
-  errorTextClass: 'text-help'
 };
 
 const onRoomChange = (value) => {
@@ -89,28 +102,6 @@ const onRoomChange = (value) => {
     }
   }
 };
-
-// Price slider
-
-const slider = form.querySelector('.ad-form__slider');
-const typeSelect = form.querySelector('#type');
-const priceInput = form.querySelector('#price');
-
-noUiSlider.create(slider, {
-  range: {
-    min: 0,
-    max: 100000,
-  },
-  step: 10,
-  start: 0,
-  connect: 'lower'
-});
-
-slider.noUiSlider.on('update', () => {
-  priceInput.value = slider.noUiSlider.get();
-});
-
-// End of price slider
 
 const onTypeChange = () => {
   switch(typeSelect.value) {
@@ -189,9 +180,6 @@ const onTypeChange = () => {
   }
 };
 
-const timeInSelect = form.querySelector('#timein');
-const timeOutSelect = form.querySelector('#timeout');
-
 const onInTimeChange = () => {
   timeOutSelect.value = timeInSelect.value;
 };
@@ -200,4 +188,20 @@ const onOutTimeChange = () => {
   timeInSelect.value = timeOutSelect.value;
 };
 
-export {disableForm, enableForm, onRoomChange, onTypeChange, onInTimeChange, onOutTimeChange, adFormValidator};
+addressInput.setAttribute('readonly', 'readonly');
+addressInput.value = getDafaultCoords();
+
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetForm();
+});
+
+export {
+  disableForm,
+  enableForm,
+  onRoomChange,
+  onTypeChange,
+  onInTimeChange,
+  onOutTimeChange,
+  adFormValidator
+};
