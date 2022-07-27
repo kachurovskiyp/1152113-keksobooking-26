@@ -20,6 +20,43 @@ const pristineConfig = {
   errorTextClass: 'text-help'
 };
 
+// avatar
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
+const avatarCooser = form.querySelector('#avatar');
+const avatarPrewiev = form.querySelector('.ad-form-header__preview');
+
+avatarCooser.addEventListener('change', () => {
+  const file = avatarCooser.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    avatarPrewiev.querySelector('img').src = URL.createObjectURL(file);
+  }
+});
+
+//form foto
+
+const fotoCooser = form.querySelector('#images');
+const fotoPrewiev = form.querySelector('.ad-form__photo');
+
+fotoCooser.addEventListener('change', () => {
+  const file = fotoCooser.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    const foto = document.createElement('img');
+    foto.src = URL.createObjectURL(file);
+    foto.width = 200;
+    foto.alt = 'Фото жилья';
+    fotoPrewiev.append(foto);
+  }
+});
+
 // Price slider
 
 noUiSlider.create(slider, {
