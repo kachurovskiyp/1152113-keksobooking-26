@@ -12,6 +12,25 @@ const typeSelect = form.querySelector('#type');
 const priceInput = form.querySelector('#price');
 const resetButton = form.querySelector('.ad-form__reset');
 const addressInput = form.querySelector('#address');
+const submitButton = form.querySelector('.ad-form__submit');
+
+const disableForm = () => {
+  form.classList.add('ad-form--disabled');
+  formFieldsets.forEach((fieldset) => {
+    fieldset.setAttribute('disabled', 'disabled');
+  });
+  disableMapFilters();
+};
+
+disableForm();
+
+const enableForm = () => {
+  form.classList.remove('ad-form--disabled');
+  formFieldsets.forEach((fieldset) => {
+    fieldset.disabled = false;
+  });
+  enableMapFilters();
+};
 
 const pristineConfig = {
   classTo: 'ad-form__element',
@@ -73,27 +92,23 @@ slider.noUiSlider.on('update', () => {
   priceInput.value = slider.noUiSlider.get();
 });
 
-const disableForm = () => {
-  form.classList.add('ad-form--disabled');
-  formFieldsets.forEach((fieldset) => {
-    fieldset.setAttribute('disabled', 'disabled');
-  });
-  disableMapFilters();
-};
 
-const enableForm = () => {
-  form.classList.remove('ad-form--disabled');
-  formFieldsets.forEach((fieldset) => {
-    fieldset.disabled = false;
-  });
-  enableMapFilters();
-};
 
 const resetForm = () => {
   form.reset();
   resetMapFilters();
   resetMap();
   addressInput.value = getDafaultCoords();
+};
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикуем...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
 };
 
 // Form validation
@@ -103,7 +118,9 @@ const adFormValidator = (pristine) => {
     const isValid = pristine.validate();
 
     if(isValid) {
+      blockSubmitButton();
       sendData(new FormData(evt.target));
+      resetForm();
     }
   });
 };
@@ -240,5 +257,6 @@ export {
   onTypeChange,
   onInTimeChange,
   onOutTimeChange,
-  adFormValidator
+  adFormValidator,
+  unblockSubmitButton
 };

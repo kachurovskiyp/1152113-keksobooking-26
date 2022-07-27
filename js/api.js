@@ -1,4 +1,5 @@
 import { showAlert, showStatus } from './until.js';
+import { unblockSubmitButton } from './form.js';
 
 const LOAD_DATA_SERVER = 'https://26.javascript.pages.academy/keksobooking/data';
 const SEND_DATA_SERVER = 'https://26.javascript.pages.academy/keksobooking';
@@ -30,6 +31,7 @@ const sendData = (formData) => {
     .then((response) => {
       if (response.ok) {
         showStatus('success');
+        unblockSubmitButton();
         return;
       }
       throw new Error(`${response.status} ${response.statusText}`);

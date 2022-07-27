@@ -86,16 +86,19 @@ const filters = {
   },
 
   features : (dataItem) => {
+    let isMatch = true;
     if(dataItem.offer.features) {
 
       const checkedFilters = document.querySelector('.map__filters')
         .querySelectorAll('input[type="checkbox"]:checked');
 
-      if(checkedFilters) {
-        checkedFilters.forEach((filter) => dataItem.offer.features.includes(filter.id.substring(7)));
+      if(checkedFilters.length !== 0) {
+        checkedFilters.forEach((filter) => {
+          isMatch = dataItem.offer.features.includes(filter.id.substring(7))
+        });
       }
     }
-    return true;
+    return isMatch;
   }
 };
 

@@ -1,5 +1,4 @@
 import {
-  disableForm,
   onRoomChange,
   onTypeChange,
   onInTimeChange,
@@ -14,8 +13,6 @@ const roomSelect = form.querySelector('#room_number');
 const typeInput = form.querySelector('#type');
 const timeInSelect = form.querySelector('#timein');
 const timeOutSelect = form.querySelector('#timeout');
-
-disableForm();
 
 roomSelect.addEventListener('change', () => {
   onRoomChange(roomSelect.value);
