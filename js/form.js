@@ -30,7 +30,7 @@ avatarCooser.addEventListener('change', () => {
   const file = avatarCooser.files[0];
   const fileName = file.name.toLowerCase();
 
-  const matches = FILE_TYPES.some((it) =>  fileName.endsWith(it));
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
   if (matches) {
     avatarPrewiev.querySelector('img').src = URL.createObjectURL(file);
