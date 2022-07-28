@@ -14,6 +14,15 @@ const typeInput = form.querySelector('#type');
 const timeInSelect = form.querySelector('#timein');
 const timeOutSelect = form.querySelector('#timeout');
 
+const pristineConfig = {
+  classTo: 'ad-form__element',
+  errorTextParent: 'ad-form__element',
+  errorTextTag: 'div',
+  errorTextClass: 'text-help'
+};
+
+const pristine = new Pristine(form, pristineConfig);
+
 roomSelect.addEventListener('change', () => {
   onRoomChange(roomSelect.value);
 });
@@ -29,15 +38,6 @@ timeInSelect.addEventListener('change', () => {
 timeOutSelect.addEventListener('change', () => {
   onOutTimeChange();
 });
-
-const pristineConfig = {
-  classTo: 'ad-form__element',
-  errorTextParent: 'ad-form__element',
-  errorTextTag: 'div',
-  errorTextClass: 'text-help'
-};
-
-const pristine = new Pristine(form, pristineConfig);
 
 adFormValidator(pristine);
 onRoomChange(roomSelect.value);

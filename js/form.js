@@ -34,6 +34,9 @@ const submitButton = form.querySelector('.ad-form__submit');
 const fotoCooser = form.querySelector('#images');
 const fotoPrewiev = form.querySelector('.ad-form__photo');
 
+const avatarCooser = form.querySelector('#avatar');
+const avatarPrewiev = form.querySelector('.ad-form-header__preview');
+
 const disableForm = () => {
   form.classList.add('ad-form--disabled');
   formFieldsets.forEach((fieldset) => {
@@ -60,9 +63,6 @@ const pristineConfig = {
 };
 
 // avatar
-
-const avatarCooser = form.querySelector('#avatar');
-const avatarPrewiev = form.querySelector('.ad-form-header__preview');
 
 avatarCooser.addEventListener('change', () => {
   const file = avatarCooser.files[0];
