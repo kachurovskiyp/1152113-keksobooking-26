@@ -1,3 +1,12 @@
+const prices = {
+  MIN : 1000,
+  MIDDLE : 50000,
+  LOW : 100000,
+  HIGH : 500000
+};
+
+const ID_LETTER_COUNT = 7;
+
 const mapFilters = document.querySelector('.map__filters');
 const typeSelect = mapFilters.querySelector('#housing-type');
 const priceSelect = mapFilters.querySelector('#housing-price');
@@ -57,13 +66,13 @@ const filters = {
     if(priceSelect.value !== 'any') {
       switch(priceSelect.value) {
         case 'middle': {
-          return dataItem.offer.price > 10000 && dataItem.offer.price < 50000;
+          return dataItem.offer.price > prices.MIN && dataItem.offer.price < prices.MIDDLE;
         }
         case 'low': {
-          return dataItem.offer.price < 100000;
+          return dataItem.offer.price < prices.LOW;
         }
         case 'high': {
-          return dataItem.offer.price > 500000;
+          return dataItem.offer.price > prices.HIGH;
         }
       }
     }
@@ -94,7 +103,7 @@ const filters = {
 
       if(checkedFilters.length !== 0) {
         checkedFilters.forEach((filter) => {
-          isMatch = dataItem.offer.features.includes(filter.id.substring(7));
+          isMatch = dataItem.offer.features.includes(filter.id.substring(ID_LETTER_COUNT));
         });
       }
     }

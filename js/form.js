@@ -2,6 +2,23 @@ import { sendData } from './api.js';
 import { disableMapFilters, enableMapFilters, resetMapFilters } from './map-filers.js';
 import { resetMap, getDafaultCoords } from './map.js';
 
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const FORM_FOTO_WIDTH = 200;
+const sliderRange = {
+  MIN: 0,
+  MAX: 100000,
+  START: 0,
+  STEP: 10
+};
+
+const minPrices = {
+  bungalow: 0,
+  flat : 1000,
+  hotel : 3000,
+  house : 5000,
+  palace : 10000
+};
+
 const form = document.querySelector('.ad-form');
 const formFieldsets = form.querySelectorAll('fieldset');
 const capacitySelect = form.querySelector('#capacity');
@@ -13,6 +30,9 @@ const priceInput = form.querySelector('#price');
 const resetButton = form.querySelector('.ad-form__reset');
 const addressInput = form.querySelector('#address');
 const submitButton = form.querySelector('.ad-form__submit');
+
+const fotoCooser = form.querySelector('#images');
+const fotoPrewiev = form.querySelector('.ad-form__photo');
 
 const disableForm = () => {
   form.classList.add('ad-form--disabled');
@@ -40,7 +60,6 @@ const pristineConfig = {
 };
 
 // avatar
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const avatarCooser = form.querySelector('#avatar');
 const avatarPrewiev = form.querySelector('.ad-form-header__preview');
@@ -58,9 +77,6 @@ avatarCooser.addEventListener('change', () => {
 
 //form foto
 
-const fotoCooser = form.querySelector('#images');
-const fotoPrewiev = form.querySelector('.ad-form__photo');
-
 fotoCooser.addEventListener('change', () => {
   const file = fotoCooser.files[0];
   const fileName = file.name.toLowerCase();
@@ -70,7 +86,7 @@ fotoCooser.addEventListener('change', () => {
   if (matches) {
     const foto = document.createElement('img');
     foto.src = URL.createObjectURL(file);
-    foto.width = 200;
+    foto.width = FORM_FOTO_WIDTH;
     foto.alt = 'Фото жилья';
     fotoPrewiev.append(foto);
   }
@@ -80,11 +96,11 @@ fotoCooser.addEventListener('change', () => {
 
 noUiSlider.create(slider, {
   range: {
-    min: 0,
-    max: 100000,
+    min: sliderRange.MIN,
+    max: sliderRange.MAX,
   },
-  step: 10,
-  start: 0,
+  step: sliderRange.STEP,
+  start: sliderRange.START,
   connect: 'lower'
 });
 
@@ -158,75 +174,75 @@ const onRoomChange = (value) => {
 const onTypeChange = () => {
   switch(typeSelect.value) {
     case 'bungalow': {
-      priceInput.placeholder = '0';
+      priceInput.placeholder = minPrices.bungalow;
       slider.noUiSlider.updateOptions({
         range: {
-          min: 0,
-          max: 100000,
+          min: sliderRange.MIN,
+          max: sliderRange.MAX,
         },
-        step: 10,
+        step: sliderRange.STEP,
       });
-      priceInput.value = 0;
+      priceInput.value = minPrices.bungalow;
       break;
     }
 
     case 'flat': {
-      priceInput.placeholder = '1000';
+      priceInput.placeholder = minPrices.flat;
       slider.noUiSlider.updateOptions({
         range: {
-          min: 1000,
-          max: 100000,
+          min: minPrices.flat,
+          max: sliderRange.MAX,
         },
-        step: 10,
+        step: sliderRange.STEP,
       });
-      priceInput.value = 1000;
+      priceInput.value = minPrices.flat;
       const pristine = new Pristine(form, pristineConfig);
-      pristine.addValidator(priceInput, () => priceInput.value * 1 > 1000, 'Цена не может быть ниже 1000');
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > minPrices.flat, `Цена не может быть ниже ${minPrices.flat}`);
       break;
     }
 
     case 'hotel': {
-      priceInput.placeholder = '3000';
+      priceInput.placeholder = minPrices.hotel;
       slider.noUiSlider.updateOptions({
         range: {
-          min: 3000,
-          max: 100000,
+          min: minPrices.hotel,
+          max: sliderRange.MAX,
         },
-        step: 10,
+        step: sliderRange.STEP,
       });
-      priceInput.value = 3000;
+      priceInput.value = minPrices.hotel;
       const pristine = new Pristine(form, pristineConfig);
-      pristine.addValidator(priceInput, () => priceInput.value * 1 > 3000, 'Цена не может быть ниже 3000');
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > minPrices.hotel, `Цена не может быть ниже ${minPrices.hotel}`);
       break;
     }
 
     case 'house': {
-      priceInput.placeholder = '5000';
+      priceInput.placeholder = minPrices.house;
       slider.noUiSlider.updateOptions({
         range: {
-          min: 5000,
-          max: 100000,
+          min: minPrices.house,
+          max: sliderRange.MAX,
         },
-        step: 10,
+        step: sliderRange.STEP,
       });
-      priceInput.value = 5000;
+      priceInput.value = minPrices.house;
       const pristine = new Pristine(form, pristineConfig);
-      pristine.addValidator(priceInput, () => priceInput.value * 1 > 5000, 'Цена не может быть ниже 5000');
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > minPrices.house, `Цена не может быть ниже ${minPrices.house}`);
       break;
     }
 
     case 'palace': {
-      priceInput.placeholder = '10000';
+      priceInput.placeholder = minPrices.palace;
       slider.noUiSlider.updateOptions({
         range: {
-          min: 10000,
-          max: 100000,
+          min: minPrices.palace,
+          max: sliderRange.MAX,
         },
-        step: 10,
+        step: sliderRange.STEP,
       });
-      priceInput.value = 10000;
+      priceInput.value = minPrices.palace;
       const pristine = new Pristine(form, pristineConfig);
-      pristine.addValidator(priceInput, () => priceInput.value * 1 > 10000, 'Цена не может быть ниже 10000');
+      pristine.addValidator(priceInput, () => priceInput.value * 1 > minPrices.palace, `Цена не может быть ниже ${minPrices.palace}`);
       break;
     }
   }
