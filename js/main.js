@@ -42,4 +42,5 @@ timeOutSelect.addEventListener('change', () => {
 adFormValidator(pristine);
 onRoomChange(roomSelect.value);
 onTypeChange();
+
 mapInit();

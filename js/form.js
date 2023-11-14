@@ -4,6 +4,7 @@ import { resetMap, getDafaultCoords } from './map.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const FORM_FOTO_WIDTH = 200;
+
 const sliderRange = {
   MIN: 0,
   MAX: 100000,
